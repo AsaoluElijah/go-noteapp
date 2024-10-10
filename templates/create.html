@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Note</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="max-w-4xl mx-auto p-4">
+      <form action="/create" method="POST" class="bg-white p-6">
+        <div class="flex justify-between items-center mb-4 pb-4 border-b">
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="is_public"
+              name="is_public"
+              class="mr-2"
+            />
+            <label for="is_public" class="text-lg">Public Note</label>
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Create Note
+          </button>
+        </div>
+
+        <div class="mb-4">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            required
+            class="w-full p-2 text-4xl font-bold focus:outline-none"
+          />
+        </div>
+
+        <div class="mb-4">
+          <textarea
+            id="content"
+            name="content"
+            rows="10"
+            placeholder="Start typing here..."
+            required
+            class="w-full p-2 text-lg focus:outline-none"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

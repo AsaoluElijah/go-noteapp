@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: Polysans, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max-w-4xl mt-10 mx-auto p-4">
+      <a href="/create" class="text-lg underline text-blue-600">
+        Create New Note
+      </a>
+    </div>
+
+    <div class="max-w-4xl mx-auto p-4">
+      {{if not .Notes}}
+      <p class="text-gray-600">You haven't created any notes yet.</p>
+      <div class="border-b-2 border-dashed w-full h-[10vh]"></div>
+
+      {{else}}
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{range .Notes}}
+        <div class="bg-white p-4 border-2 border-gray-300 rounded-xl">
+          <div class="flex items-center">
+            <h2 class="text-xl font-semibold">{{.Title}}</h2>
+            {{if .IsPublic}}
+            <span
+              class="ml-auto text-xs bg-green-200 text-green-800 py-1 px-2 rounded-full"
+              >Public</span
+            >
+            {{end}}
+          </div>
+
+          <p class="pb-12 text-sm text-gray-500">{{.Content}}</p>
+          <div class="mt-2 flex">
+            <form action="/notes/{{.ID}}/delete" method="POST">
+              <button class="text-sm text-orange-400 p-2 rounded" type="submit">
+                Delete
+              </button>
+            </form>
+            {{if .IsPublic}}
+            <a href="/share/{{.ID}}" class="text-sm text-gray-500 p-2 rounded"
+              >Share</a
+            >
+            {{end}}
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      {{end}}
+    </div>
+  </body>
+</html>
